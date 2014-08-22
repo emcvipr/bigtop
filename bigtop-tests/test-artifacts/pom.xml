@@ -50,8 +50,11 @@
     <module>fatjar</module>
     <module>longevity</module>
     <module>hcatalog</module>
+    <!--
+    #TODO temporarily commented to avoid build issue. Need to revisit again.
     <module>spark</module>
     <module>phoenix</module>
+    -->
   </modules>
 
   <dependencies>

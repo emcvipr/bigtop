@@ -30,14 +30,21 @@
   <version>0.8.0-SNAPSHOT</version>
   <name>hbasesmoke</name>
 
+  <properties>
+    <hadoop.version>${env.ENV_HADOOP_VERSION}</hadoop.version>
+    <hbase.version>${env.ENV_HBASE_VERSION}</hbase.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-common</artifactId>
+      <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-client</artifactId>
+      <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hbase</groupId>
@@ -46,15 +53,18 @@
     <dependency>
       <groupId>org.apache.hbase</groupId>
       <artifactId>hbase-common</artifactId>
+      <version>${hbase.version}</version>
       <type>test-jar</type>
     </dependency>
     <dependency>
       <groupId>org.apache.hbase</groupId>
       <artifactId>hbase-server</artifactId>
+      <version>${hbase.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hbase</groupId>
       <artifactId>hbase-server</artifactId>
+      <version>${hbase.version}</version>
       <type>test-jar</type>
     </dependency>
   </dependencies>

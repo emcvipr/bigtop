@@ -30,19 +30,26 @@
   <version>0.8.0-SNAPSHOT</version>
   <name>hadoopsmoke</name>
 
+  <properties>
+    <hadoop.version>${env.ENV_HADOOP_VERSION}</hadoop.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-common</artifactId>
+      <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-common</artifactId>
+      <version>${hadoop.version}</version>
       <type>test-jar</type>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-hdfs</artifactId>
+      <version>${hadoop.version}</version>
     </dependency>
   </dependencies>
 

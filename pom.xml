@@ -38,13 +38,52 @@
   <url>http://bigtop.apache.org/</url>
   <inceptionYear>2011</inceptionYear>
 
+  <!-- Expose HDP,CDH and other distro maven repos here -->
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <id>HDPReleases</id>
+      <name>HDP Releases</name>
+      <url>http://repo.hortonworks.com/content/repositories/releases/</url>
+      <layout>default</layout>
+    </repository>
+    <!--
+    <repository>
+      <id>cloudera-repo-releases</id>
+      <url>https://repository.cloudera.com/artifactory/repo/</url>
+    </repository>
+    -->
+  </repositories>
+
+  <!--
+        #The test suite expects following environment variables to be set.
+        Sample values provided below.
+        export ENV_HADOOP_VENDOR=HDP
+        export ENV_HADOOP_VERSION=2.4.0.2.1.1.0-385
+        export ENV_HBASE_VERSION=0.98.0.2.1.1.0-385-hadoop2
+        export ENV_PIG_VERSION=0.12.1.2.1.1.0-385
+        export ENV_PIG_SMOKE_VERSION=0.12.1.2.1.1.0-385
+        export ENV_ZOOKEEPER_VERSION=3.4.5.2.1.1.0-385
+        export ENV_VIPRFS_JAR=/usr/lib/hadoop/lib/hadoop-2.2-viprfs-1.1.0.jar
+  -->
+
   <properties>
-    <hadoop.version>2.3.0</hadoop.version>
-    <hbase.version>0.98.2</hbase.version>
-    <pig.version>0.12.1</pig.version>
-    <pig-smoke.version>0.12.1</pig-smoke.version>
+    <hadoop.version>${env.ENV_HADOOP_VERSION}</hadoop.version>
+    <hbase.version>${env.ENV_HBASE_VERSION}</hbase.version>
+    <pig.version>${env.ENV_PIG_VERSION}</pig.version>
+    <pig-smoke.version>${env.ENV_PIG_SMOKE_VERSION}</pig-smoke.version>
+    <zookeeper.version>${env.ENV_ZOOKEEPER_VERSION}</zookeeper.version>
+
     <sqoop.version>1.99.2</sqoop.version>
-    <zookeeper.version>3.4.5</zookeeper.version>
     <giraph.version>1.0.0</giraph.version>
     <solr.version>4.6.0</solr.version>
     <spark.version>0.9.1</spark.version>
@@ -255,6 +294,53 @@
     </extensions>
     <pluginManagement>
       <plugins>
+        <!-- validate the required environment variables before hand-->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.0</version>
+          <executions>
+            <execution>
+              <id>enforce-property</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireProperty>
+                    <property>ENV_HADOOP_VENDOR</property>
+                    <message>ENV_HADOOP_VENDOR env. variable has to be set</message>
+                  </requireProperty>
+                  <requireProperty>
+                    <property>ENV_HADOOP_VERSION</property>
+                    <message>ENV_HADOOP_VERSION env. variable has to be set</message>
+                  </requireProperty>
+                  <requireProperty>
+                    <property>ENV_HBASE_VERSION</property>
+                    <message>ENV_HBASE_VERSION env. variable has to be set</message>
+                  </requireProperty>
+                  <requireProperty>
+                    <property>ENV_PIG_VERSION</property>
+                    <message>ENV_PIG_VERSION env. variable has to be set</message>
+                  </requireProperty>
+                  <requireProperty>
+                    <property>ENV_PIG_SMOKE_VERSION</property>
+                    <message>ENV_PIG_SMOKE_VERSION env. variable has to be set</message>
+                  </requireProperty>
+                  <requireProperty>
+                    <property>ENV_ZOOKEEPER_VERSION</property>
+                    <message>ENV_ZOOKEEPER_VERSION env. variable has to be set</message>
+                  </requireProperty>
+                  <requireProperty>
+                    <property>ENV_VIPRFS_JAR</property>
+                    <message>ENV_VIPRFS_JAR env. variable has to be set</message>
+                  </requireProperty>
+                </rules>
+                <fail>true</fail>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
         <plugin>
           <groupId>org.apache.rat</groupId>
           <artifactId>apache-rat-plugin</artifactId>
