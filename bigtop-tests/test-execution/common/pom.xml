@@ -113,6 +113,18 @@
       <groupId>org.codehaus.groovy.maven.runtime</groupId>
       <artifactId>gmaven-runtime-1.6</artifactId>
     </dependency>
+
+    <!-- Add ViPRFS custom jar dependency to the maven classpath -->
+    <!--
+        Deploy the JAR using below command
+        mvn install:install-file -Dfile=${ENV_VIPRFS_JAR} -DgroupId=com.emc -DartifactId=viprfs -Dversion=1.0 -Dpackaging=jar
+    -->
+    <dependency>
+      <groupId>com.emc</groupId>
+      <artifactId>viprfs</artifactId>
+      <version>1.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -125,9 +137,6 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.11</version>
           <configuration>
-            <additionalClasspathElements>
-              <additionalClasspathElement>${env.ENV_VIPRFS_JAR}</additionalClasspathElement>
-            </additionalClasspathElements>
             <skip>true</skip>
           </configuration>
         </plugin>
@@ -260,7 +269,6 @@
                <org.apache.bigtop.itest.log4j.level>INFO</org.apache.bigtop.itest.log4j.level>
             </systemPropertyVariables>
             <additionalClasspathElements>
-              <additionalClasspathElement>${env.ENV_VIPRFS_JAR}</additionalClasspathElement>
               <additionalClasspathElement>${HADOOP_CONF_DIR}</additionalClasspathElement>
               <org.apache.bigtop.itest.JUnitUtils.results.dir>${project.build.directory}/failsafe-reports</org.apache.bigtop.itest.JUnitUtils.results.dir>
             </additionalClasspathElements>

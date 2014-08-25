@@ -294,53 +294,6 @@
     </extensions>
     <pluginManagement>
       <plugins>
-        <!-- validate the required environment variables before hand-->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.0</version>
-          <executions>
-            <execution>
-              <id>enforce-property</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <configuration>
-                <rules>
-                  <requireProperty>
-                    <property>ENV_HADOOP_VENDOR</property>
-                    <message>ENV_HADOOP_VENDOR env. variable has to be set</message>
-                  </requireProperty>
-                  <requireProperty>
-                    <property>ENV_HADOOP_VERSION</property>
-                    <message>ENV_HADOOP_VERSION env. variable has to be set</message>
-                  </requireProperty>
-                  <requireProperty>
-                    <property>ENV_HBASE_VERSION</property>
-                    <message>ENV_HBASE_VERSION env. variable has to be set</message>
-                  </requireProperty>
-                  <requireProperty>
-                    <property>ENV_PIG_VERSION</property>
-                    <message>ENV_PIG_VERSION env. variable has to be set</message>
-                  </requireProperty>
-                  <requireProperty>
-                    <property>ENV_PIG_SMOKE_VERSION</property>
-                    <message>ENV_PIG_SMOKE_VERSION env. variable has to be set</message>
-                  </requireProperty>
-                  <requireProperty>
-                    <property>ENV_ZOOKEEPER_VERSION</property>
-                    <message>ENV_ZOOKEEPER_VERSION env. variable has to be set</message>
-                  </requireProperty>
-                  <requireProperty>
-                    <property>ENV_VIPRFS_JAR</property>
-                    <message>ENV_VIPRFS_JAR env. variable has to be set</message>
-                  </requireProperty>
-                </rules>
-                <fail>true</fail>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
         <plugin>
           <groupId>org.apache.rat</groupId>
           <artifactId>apache-rat-plugin</artifactId>
