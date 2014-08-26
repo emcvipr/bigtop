@@ -40,6 +40,7 @@ class TestHadoopExamples {
 
   private static final String HADOOP_MAPRED_HOME = System.getenv('HADOOP_MAPRED_HOME');
   private static final String HADOOP_CONF_DIR = System.getenv('HADOOP_CONF_DIR');
+  private static final String BIGTOP_HOME = System.getenv('BIGTOP_HOME');
   private static String hadoopExamplesJar =
     JarContent.getJarName(HADOOP_MAPRED_HOME, 'hadoop.*examples.*.jar');
   static {
@@ -47,6 +48,8 @@ class TestHadoopExamples {
         HADOOP_MAPRED_HOME);
     assertNotNull("HADOOP_CONF_DIR has to be set to run this test",
         HADOOP_CONF_DIR);
+    assertNotNull("BIGTOP_HOME has to be set to run this test",
+        BIGTOP_HOME);
     assertNotNull("Can't find hadoop-examples.jar file", hadoopExamplesJar);
   }
   static final String HADOOP_EXAMPLES_JAR =
@@ -60,8 +63,12 @@ class TestHadoopExamples {
   * See BIGTOP-1222 for example.
   */
   public static final String SOURCE ="bigtop-tests/test-artifacts/hadoop/src/main/resources/"
-  private static final String EXAMPLES = "examples";
-  private static final String EXAMPLES_OUT = "examples-output";
+  #VIPR-HDFS-566 BUG FIX
+  //private static final String EXAMPLES = "examples";
+  private static final String EXAMPLES = "/examples";
+  #VIPR-HDFS-566 BUG FIX
+  //private static final String EXAMPLES_OUT = "examples-output";
+  private static final String EXAMPLES_OUT = "/examples-output";
   private static Configuration conf;
 
   private static String mr_version = System.getProperty("mr.version", "mr2");
