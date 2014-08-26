@@ -63,10 +63,10 @@ class TestHadoopExamples {
   * See BIGTOP-1222 for example.
   */
   public static final String SOURCE ="bigtop-tests/test-artifacts/hadoop/src/main/resources/"
-  #VIPR-HDFS-566 BUG FIX
+  //VIPR-HDFS-566 BUG FIX
   //private static final String EXAMPLES = "examples";
   private static final String EXAMPLES = "/examples";
-  #VIPR-HDFS-566 BUG FIX
+  //VIPR-HDFS-566 BUG FIX
   //private static final String EXAMPLES_OUT = "examples-output";
   private static final String EXAMPLES_OUT = "/examples-output";
   private static Configuration conf;
