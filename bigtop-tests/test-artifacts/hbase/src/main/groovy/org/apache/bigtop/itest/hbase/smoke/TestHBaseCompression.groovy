@@ -29,7 +29,9 @@ import org.junit.Ignore
 import org.apache.bigtop.itest.shell.Shell
 
 class TestHBaseCompression {
-  private static final String OUTPUT = "snappy-output";
+  //VIPR-HDFS-566 BUG FIX
+  //private static final String OUTPUT = "snappy-output";
+  private static final String OUTPUT = "/snappy-output";
   private static final String TEST = "org.apache.hadoop.hbase.util.CompressionTest";
   private static Configuration conf;
   private static String HADOOP_OPTIONS;
@@ -46,7 +48,9 @@ class TestHBaseCompression {
       "-fs ${conf.get('fs.default.name')} -jt ${conf.get('mapred.job.tracker')}";
     sh.exec("whoami");
     String user = sh.out[0];
-    HDFS_PATH = "${conf.get('fs.default.name')}/user/$user/$OUTPUT";
+    //VIPR-HDFS-566 BUG FIX
+    //HDFS_PATH = "${conf.get('fs.default.name')}/user/$user/$OUTPUT";
+    HDFS_PATH = "${conf.get('fs.default.name')}$OUTPUT";
     sh.exec("hadoop fs $HADOOP_OPTIONS -test -e $OUTPUT");
     if (sh.getRet() == 0) {
       sh.exec("hadoop fs $HADOOP_OPTIONS -rmr -skipTrash $OUTPUT");
