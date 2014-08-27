@@ -26,7 +26,9 @@ import static org.apache.bigtop.itest.LogErrorsUtils.logError
 
 class TestTextSnappy {
   static Shell sh = new Shell("/bin/bash -s")
-  static String testDir = "testtextsnappy." + (new Date().getTime())
+  //VIPR-HDFS-566 BUG FIX
+  //static String testDir = "testtextsnappy." + (new Date().getTime())
+  static String testDir = "/testtextsnappy." + (new Date().getTime())
   static String snappyFile = "part-00001.snappy"
 
   @BeforeClass
