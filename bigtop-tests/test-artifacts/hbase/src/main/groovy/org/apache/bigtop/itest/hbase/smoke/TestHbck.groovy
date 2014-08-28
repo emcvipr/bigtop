@@ -26,7 +26,9 @@ import static org.apache.bigtop.itest.LogErrorsUtils.logError
  * Validates the HBase cluster health.
  */
 public class TestHbck {
-  static Shell sh = new Shell("/bin/bash -s")
+  //VIPR Fix to run the test under hbase account
+  //static Shell sh = new Shell("/bin/bash -s")
+  static Shell sh = new Shell("/bin/bash -s","hbase")
   String[] hbckCmds = [
     "hbase hbck",
     "hbase hbck -details",
