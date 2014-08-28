@@ -56,12 +56,10 @@
       <url>http://repo.hortonworks.com/content/repositories/releases/</url>
       <layout>default</layout>
     </repository>
-    <!--
     <repository>
       <id>cloudera-repo-releases</id>
       <url>https://repository.cloudera.com/artifactory/repo/</url>
     </repository>
-    -->
   </repositories>
 
   <!--
