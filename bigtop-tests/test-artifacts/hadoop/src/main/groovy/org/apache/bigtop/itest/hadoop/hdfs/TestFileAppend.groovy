@@ -38,8 +38,7 @@ public class TestFileAppend {
   //VIPR-HDFS-566 BUG FIX
   //private static String testAppendInput = "testAppendInput$date";
   private static String testAppendInput = "/testAppendInput$date";
-  //private static String testAppendOutput = "testAppendOutput$date";
-  private static String testAppendOutput = "/testAppendOutput$date";
+  private static String testAppendOutput = "testAppendOutput$date";
   private static String namenode;
   private static Configuration conf;
 
