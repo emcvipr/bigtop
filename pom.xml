@@ -57,9 +57,20 @@
       <layout>default</layout>
     </repository>
     <repository>
-      <id>cloudera-repo-releases</id>
-      <url>https://repository.cloudera.com/artifactory/repo/</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <id>cloudera</id>
+      <url>http://repository.cloudera.com/artifactory/cloudera-repos/</url>
     </repository>
+
   </repositories>
 
   <!--
