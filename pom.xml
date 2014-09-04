@@ -70,7 +70,11 @@
       <id>cloudera</id>
       <url>http://repository.cloudera.com/artifactory/cloudera-repos/</url>
     </repository>
-
+    <repository>
+        <id>repo.spring.io</id>
+        <name>repo.spring.io-releases</name>
+        <url>http://repo.spring.io/ext-release-local</url>
+    </repository>
   </repositories>
 
   <!--

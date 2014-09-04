@@ -51,7 +51,22 @@ public class TestNode {
 
     // status
     System.out.println("-status");
-    String NodeId = sh.getOut().get(2).trim().split()[0];
+    //VIPRFS Fix - Fixed the node info fetch logic to support PHD distro
+    int index = -1;
+    for(int count=0; count<sh.getOut().size(); count++) {
+       String node = sh.getOut().get(count);
+       if(node != null) {
+         String nodeid =  node.trim().split()[0];
+         if(nodeid != null && nodeid.equals("Node-Id")) {
+           index = count;
+           break;
+         }
+       }
+    }
+    assertTrue("Unable to locate Node-Id", index != -1);
+    assertTrue("Unable to locate Node at index:"+index+1, sh.getOut().get(index+1) != null);
+    String NodeId = sh.getOut().get(index+1).trim().split()[0];
+    //String NodeId = sh.getOut().get(2).trim().split()[0];
     sh.exec("yarn node -status " + NodeId);
     assertTrue("-status failed", sh.getRet() == 0);
   }
