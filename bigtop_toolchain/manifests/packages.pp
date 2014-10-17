@@ -15,9 +15,15 @@
 
 class bigtop_toolchain::packages {
   case $operatingsystem{
-  /(?i:(centos|fedora))/: { $pkgs = [ "wget", "git", "make" , "cmake" , "rpm-build" , "lzo-devel", "redhat-rpm-config", "openssl-devel", "asciidoc", "fuse-libs", "fuse-devel", "fuse", "gcc", "gcc-c++", "autoconf", "automake", "libtool"] }
-  /(?i:(SLES|opensuse))/: { $pkgs = [ "unzip", "wget", "git", "make" , "cmake" , "rpm-devel" , "lzo-devel", "libopenssl-devel", "asciidoc", "fuse-devel", "fuse", "gcc", "gcc-c++", "autoconf", "automake", "libtool", "pkg-config"] }
-  Ubuntu: { $pkgs = [ "liblzo2-dev", "libzip-dev", "sharutils", "libfuse-dev", "cmake", "pkg-config", "debhelper", "devscripts", "protobuf-compiler", "build-essential", "dh-make", "reprepro", "automake", "autoconf", "libfuse2", "libssh-dev", "asciidoc", "libjansi-java" ] }
+  /(?i:(centos|fedora))/: { $pkgs = [ "unzip", "curl", "wget", "git",      "make", "cmake", "autoconf", "automake", "libtool", "gcc", "gcc-c++", "fuse", "createrepo", "lzo-devel",   "fuse-devel",  "cppunit-devel",    "openssl-devel",         "rpm-build" , "redhat-rpm-config", "fuse-libs" ] }
+  /(?i:(SLES|opensuse))/: { $pkgs = [ "unzip", "curl", "wget", "git",      "make", "cmake", "autoconf", "automake", "libtool", "gcc", "gcc-c++", "fuse", "createrepo", "lzo-devel",   "fuse-devel",  "libcppunit-devel", "libopenssl-devel",      "rpm-devel", "pkg-config" ] }
+  Ubuntu: {                 $pkgs = [ "unzip", "curl", "wget", "git-core", "make", "cmake", "autoconf", "automake", "libtool", "gcc", "g++",     "fuse", "reprepro",   "liblzo2-dev", "libfuse-dev", "libcppunit-dev",   "libssl-dev",            "libzip-dev", "sharutils", "pkg-config", "debhelper", "devscripts", "protobuf-compiler", "build-essential", "dh-make", "libfuse2", "libssh-dev", "libjansi-java" ] 
+      
+    exec { "apt-update":
+      command => "/usr/bin/apt-get update"
+    }
+    Exec["apt-update"] -> Package <| |>      
+  }
 }
   package { $pkgs:
     ensure => installed,

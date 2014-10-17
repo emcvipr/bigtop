@@ -15,6 +15,7 @@
 
 class bigtop_toolchain::installer {
   include bigtop_toolchain::jdk
+# include bigtop_toolchain::jdk6
   include bigtop_toolchain::maven
   include bigtop_toolchain::forrest
   include bigtop_toolchain::ant
@@ -24,4 +25,9 @@ class bigtop_toolchain::installer {
   include bigtop_toolchain::env
   include bigtop_toolchain::user
   include bigtop_toolchain::scala
+
+  stage { 'last':
+    require => Stage['main'],
+  }
+  class { 'bigtop_toolchain::cleanup': stage => 'last' }
 }

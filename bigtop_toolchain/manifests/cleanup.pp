@@ -1,4 +1,3 @@
-#!/bin/bash
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -14,23 +13,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -e
+class bigtop_toolchain::cleanup {
+  $packager_cleanup = $operatingsystem ? {
+    /(?i:(centos|fedora))/ => 'yum clean all',
+    /(?i:(SLES|opensuse))/ => 'zypper clean -a',
+    Ubuntu                 => 'apt-get clean',
+  } 
+  
+  exec { 'remove archives':
+    cwd         => '/tmp',
+    command     => '/bin/bash -c "rm -rf /tmp/* ; rm -f /usr/src/* ; exit 0"'
+  }
 
-case "$1" in
-    configure)
-        # Install config alternatives
-        update-alternatives  --install /etc/hcatalog/conf hcatalog-conf /etc/hcatalog/conf.dist 30
-        chown hive:hive /var/run/hcatalog || :
-        chown hive:hive /var/log/hcatalog || :
-    ;;
-
-    abort-upgrade|abort-remove|abort-deconfigure)
-    ;;
-
-    *)
-        echo "postinst called with unknown argument \`$1'" >&2
-        exit 1
-    ;;
-esac
-
-#DEBHELPER#
+  exec { 'clean packages':
+    cwd         => '/tmp',
+    command     => $packager_cleanup,
+    path        => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
+  }
+}

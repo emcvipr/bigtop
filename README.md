@@ -65,8 +65,19 @@ Getting Started
 Below are some recipes for getting started with using Apache Bigtop. As Apache Bigtop has different subprojects, these recipes will continue to evolve.  
 For specific questions it's always a good idea to ping the mailing list at dev-subscribe@bigtop.apache.org to get some immediate feedback, or [open a JIRA](https://issues.apache.org/jira/browse/BIGTOP).
 
-For Users: Running the tests 
-----------------------------
+For Users: Running the smoke tests.
+-----------------------------------
+
+The simplest way to test bigtop is to:
+
+* Step 1: Install gradle.
+* Step 2: cd bigtop-tests/smoke-tests/
+* Step 3: Follow the instructions in the smoke-tests/README file.
+
+For integration (API level) testing with maven, read on. 
+
+For Users: Running the integration tests.
+-----------------------------------------
 
 WARNING: since testing packages requires installing them on a live system it is highly recommended to use VMs for that. Testing Apache Bigtop is done using iTest framework. The tests are organized in maven submodules, with one submodule per Apache Bigtop component.  The bigtop-tests/test-execution/smokes/pom.xml defines all submodules to be tested, and each submodule is in its own directory under smokes/, for example:
  
@@ -91,7 +102,7 @@ WARNING: since testing packages requires installing them on a live system it is 
 
     * Just running hadoop examples, nothing else.
 
-            mvn clean verify -D'org.apache.maven-failsafe-plugin.testInclude=**/*TestHadoopExamples*' -f bigtop-tests/test-execution/smokes/package/pom.xml
+            mvn clean verify -D'org.apache.maven-failsafe-plugin.testInclude=**/*TestHadoopExamples*' -f bigtop-tests/test-execution/smokes/hadoop/pom.xml
  
     Note: A minor bug/issue: you need the "testInclude" regular expression above, even if you don't want to customize the tests, 
     since existing test names don't follow the maven integration test naming convention of IT*, but instead, follow the surefire (unit test) convention of Test*.
@@ -119,7 +130,7 @@ __On all systems, Building Apache Bigtop requires the following tools__
 
 * Additionally, some details for specific linux versions :
   * __Debian__ based distros need these packages : build-essential dh-make debhelper devscripts, reprepro
-  * __openSUSE 11.4__ needs these packages : relaxngDatatypedocbook-utils docbook-simple, asciidoc, fuse-devel, docbook5, docbook5-xsl-stylesheets, libxml2-devel, xmlformat, xmlto, libxslt, libopenssl-devel
+  * __openSUSE 11.4__ needs these packages : relaxngDatatypedocbook-utils docbook-simple, fuse-devel, docbook5, docbook5-xsl-stylesheets, libxml2-devel, xmlformat, xmlto, libxslt, libopenssl-devel
 
 * __Building packages__ : `make [component-name]-[rpm|deb]`
 * __Building local YUM/APT repositories__ : `make [component-name]-[yum|apt]`

@@ -27,8 +27,6 @@ subprojects {
 
   ext.hadoopVersion = '2.3.0'
   //Note you need a snapshot itest to run this.
-  //if you dont have it, change to 0.7.0.
-  ext.itestVersion = '0.8.0-SNAPSHOT'
   ext.doExclude = { String filename ->
     //print("Exclude? ${filename} ... ")
     def keep_this_test = true;
@@ -47,8 +45,8 @@ subprojects {
   println("Now testing...");
   test {
 
-    systemProperties['org.apache.bigtop.itest.hivesmoke.TestHiveSmokeBulk.test_include'] = 'basic'
-       testLogging {
+    //todo, add back in 'basic' after BIGTOP-1392 .
+    testLogging {
       events "passed", "skipped", "failed"
     }
   }
@@ -66,6 +64,14 @@ subprojects {
     }
   }
 
-test.dependsOn compileGroovy
-compileGroovy.dependsOn clean
+  /**
+  * Two important environment variables.
+  *  java_home should be declared in all cases.
+  * itest can equal = 0.7.0, 0.8.0-SNAPSHOT,
+  */
+  checkEnv(["JAVA_HOME","ITEST"])
+  ext.itestVersion = System.getenv("ITEST")
+
+  test.dependsOn compileGroovy
+  compileGroovy.dependsOn clean
 }
