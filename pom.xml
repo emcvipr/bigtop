@@ -75,6 +75,11 @@
         <name>repo.spring.io-releases</name>
         <url>http://repo.spring.io/ext-release-local</url>
     </repository>
+    <repository>
+        <id>Apache Snapshot</id>
+        <name>bigtop-snapshot</name>
+        <url>http://repository.apache.org/snapshots</url>
+    </repository>
   </repositories>
 
   <!--
