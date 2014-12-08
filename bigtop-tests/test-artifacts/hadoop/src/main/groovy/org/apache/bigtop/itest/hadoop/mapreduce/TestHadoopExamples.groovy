@@ -65,11 +65,11 @@ class TestHadoopExamples {
   */
   public static final String SOURCE ="bigtop-tests/test-artifacts/hadoop/src/main/resources/"
   //VIPR-HDFS-566 BUG FIX
-  //private static final String EXAMPLES = "examples";
-  private static final String EXAMPLES = "/examples";
+  private static final String EXAMPLES = "examples";
+  //private static final String EXAMPLES = "/examples";
   //VIPR-HDFS-566 BUG FIX
-  //private static final String EXAMPLES_OUT = "examples-output";
-  private static final String EXAMPLES_OUT = "/examples-output";
+  private static final String EXAMPLES_OUT = "examples-output";
+  //private static final String EXAMPLES_OUT = "/examples-output";
   private static Configuration conf;
 
   private static String mr_version = System.getProperty("mr.version", "mr2");
@@ -161,7 +161,7 @@ class TestHadoopExamples {
         || FailureVars.instance.getNetworkShutdown().equals("true")) {
       runFailureThread();
     }
-/*
+*/
     sh.exec("hadoop jar $testJar $testName $testArgs");
     assertTrue("Example $testName $testJar $testName $testArgs failed", sh.getRet() == 0);
   }
@@ -172,7 +172,7 @@ class TestHadoopExamples {
     FailureExecutor failureExecutor = new FailureExecutor();
     Thread failureThread = new Thread(failureExecutor, "TestHadoopExamples");
     failureThread.start();
-*/
   }
+*/
 }
 

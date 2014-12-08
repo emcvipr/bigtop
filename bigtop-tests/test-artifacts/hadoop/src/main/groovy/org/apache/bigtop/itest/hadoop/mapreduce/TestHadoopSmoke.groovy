@@ -46,8 +46,8 @@ class TestHadoopSmoke {
   }
   static final String STREAMING_JAR = STREAMING_HOME + "/" + streaming_jar;
   //VIPR-HDFS-566 BUG FIX
-  //static String testDir = "test.hadoopsmoke." + (new Date().getTime())
-  static String testDir = "/test.hadoopsmoke." + (new Date().getTime())
+  static String testDir = "test.hadoopsmoke." + (new Date().getTime())
+  //static String testDir = "/test.hadoopsmoke." + (new Date().getTime())
   static String nn = (new Configuration()).get(DFSConfigKeys.FS_DEFAULT_NAME_KEY)
 
   String cmd = "hadoop jar ${STREAMING_JAR}" +
@@ -55,8 +55,8 @@ class TestHadoopSmoke {
   String cmd2 = " -input ${testDir}/cachefile/input.txt -mapper map.sh -file map.sh -reducer cat" +
       " -output ${testDir}/cachefile/out -verbose"
   //VIPR-HDFS-566 BUG FIX
-  //String arg = "${nn}/user/${System.properties['user.name']}/${testDir}/cachefile/cachedir.jar#testlink"
-  String arg = "${testDir}/cachefile/cachedir.jar#testlink"
+  String arg = "${nn}/user/${System.properties['user.name']}/${testDir}/cachefile/cachedir.jar#testlink"
+  //String arg = "${testDir}/cachefile/cachedir.jar#testlink"
 
   @BeforeClass
   static void  setUp() throws IOException {

@@ -113,18 +113,6 @@
       <groupId>org.codehaus.groovy.maven.runtime</groupId>
       <artifactId>gmaven-runtime-1.6</artifactId>
     </dependency>
-
-    <!-- Add ViPRFS custom jar dependency to the maven classpath -->
-    <!--
-        Deploy the JAR using below command
-        mvn install:install-file -Dfile=${ENV_VIPRFS_JAR} -DgroupId=com.emc -DartifactId=viprfs -Dversion=1.0 -Dpackaging=jar
-    -->
-    <dependency>
-      <groupId>com.emc</groupId>
-      <artifactId>viprfs</artifactId>
-      <version>1.0</version>
-    </dependency>
-
   </dependencies>
 
   <build>

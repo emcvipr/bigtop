@@ -36,8 +36,8 @@ public class TestFileAppend {
   private static final String USERNAME = System.getProperty("user.name");
   private static String date = sh.exec("date").getOut().get(0).replaceAll("\\s","").replaceAll(":","");
   //VIPR-HDFS-566 BUG FIX
-  //private static String testAppendInput = "testAppendInput$date";
-  private static String testAppendInput = "/testAppendInput$date";
+  private static String testAppendInput = "testAppendInput$date";
+  //private static String testAppendInput = "/testAppendInput$date";
   private static String testAppendOutput = "testAppendOutput$date";
   private static String namenode;
   private static Configuration conf;
@@ -81,13 +81,13 @@ public class TestFileAppend {
     
     // setting paths for I/O stream creation
     //VIPR-HDFS-566 BUG FIX
-    //String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput2.txt$date";
-    String myInputPath = namenode + "$testAppendInput/appendinput2.txt$date";
+    String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput2.txt$date";
+    //String myInputPath = namenode + "$testAppendInput/appendinput2.txt$date";
     Path inFile = new Path(myInputPath);
     assertTrue("Input file not found", fs.exists(inFile));
     //VIPR-HDFS-566 BUG FIX
-    //String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput1.txt$date";
-    String myOutputPath = namenode + "$testAppendInput/appendinput1.txt$date";
+    String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput1.txt$date";
+    //String myOutputPath = namenode + "$testAppendInput/appendinput1.txt$date";
     Path outFile = new Path(myOutputPath);
     assertTrue("Output file not found", fs.exists(outFile));
     
@@ -110,8 +110,8 @@ public class TestFileAppend {
     
     // setting paths for I/O stream creation
     //VIPR-HDFS-566 BUG FIX
-    //String myOutputCreate = namenode + "/user/$USERNAME/$testAppendInput/appendinput3.txt$date";
-    String myOutputCreate = "$testAppendInput/appendinput3.txt$date";
+    String myOutputCreate = namenode + "/user/$USERNAME/$testAppendInput/appendinput3.txt$date";
+    //String myOutputCreate = "$testAppendInput/appendinput3.txt$date";
     Path outCreate = new Path(myOutputCreate);
     FSDataOutputStream outputTemp = fs.create(outCreate);
     String myString = "-----TEST INPUT1-----\n";
@@ -119,13 +119,13 @@ public class TestFileAppend {
     IOUtils.copyBytes(is, outputTemp, 4096, true);
  
     //VIPR-HDFS-566 BUG FIX
-    //String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput2.txt$date";
-    String myInputPath = "$testAppendInput/appendinput2.txt$date";
+    String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput2.txt$date";
+    //String myInputPath = "$testAppendInput/appendinput2.txt$date";
     Path inFile = new Path(myInputPath);
     assertTrue("Input file not found", fs.exists(inFile));
     //VIPR-HDFS-566 BUG FIX
-    //String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput3.txt$date";
-    String myOutputPath = "$testAppendInput/appendinput3.txt$date";
+    String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/appendinput3.txt$date";
+    //String myOutputPath = "$testAppendInput/appendinput3.txt$date";
     Path outFile = new Path(myOutputPath);
     assertTrue("Output file not found", fs.exists(outFile));
 
@@ -159,13 +159,13 @@ public class TestFileAppend {
 
     // setting paths for I/O stream creation    
     //VIPR-HDFS-566 BUG FIX
-    //String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/3mbinput.file$date";
-    String myInputPath = "$testAppendInput/3mbinput.file$date";
+    String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/3mbinput.file$date";
+    //String myInputPath = "$testAppendInput/3mbinput.file$date";
     Path inFile = new Path(myInputPath);
     assertTrue("Input file not found", fs.exists(inFile));
     //VIPR-HDFS-566 BUG FIX
-    //String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/3mboutput.file$date";
-    String myOutputPath = "$testAppendInput/3mboutput.file$date";
+    String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/3mboutput.file$date";
+    //String myOutputPath = "$testAppendInput/3mboutput.file$date";
     Path outFile = new Path(myOutputPath);
     assertTrue("Output file not found", fs.exists(outFile));  
 
@@ -197,13 +197,13 @@ public class TestFileAppend {
 
     // setting paths for I/O stream creation        
     //VIPR-HDFS-566 BUG FIX
-    //String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/test1.file$date";
-    String myInputPath = "$testAppendInput/test1.file$date";
+    String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/test1.file$date";
+    //String myInputPath = "$testAppendInput/test1.file$date";
     Path inFile = new Path(myInputPath);
     assertTrue("Input file not found", fs.exists(inFile));
     //VIPR-HDFS-566 BUG FIX
-    //String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/test2.file$date";
-    String myOutputPath = "$testAppendInput/test2.file$date";
+    String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/test2.file$date";
+    //String myOutputPath = "$testAppendInput/test2.file$date";
     Path outFile = new Path(myOutputPath);
     assertTrue("Output file not found", fs.exists(outFile));  
 
@@ -215,8 +215,8 @@ public class TestFileAppend {
   
     // running fsck
     //VIPR-HDFS-566 BUG FIX
-    //shHDFS.exec("hadoop fsck /user/$USERNAME/$testAppendInput/test2.file$date");
-    shHDFS.exec("hadoop fsck $testAppendInput/test2.file$date");
+    shHDFS.exec("hadoop fsck /user/$USERNAME/$testAppendInput/test2.file$date");
+    //shHDFS.exec("hadoop fsck $testAppendInput/test2.file$date");
     Boolean success = shHDFS.getOut().get(shHDFS.getOut().size() - 1).contains("is HEALTHY");;
     assertTrue("Append made file unhealthy", success == true);
 
@@ -243,13 +243,13 @@ public class TestFileAppend {
 
     // setting paths for I/O stream creation        
     //VIPR-HDFS-566 BUG FIX
-    //String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/test3.file$date";
-    String myInputPath = "$testAppendInput/test3.file$date";
+    String myInputPath = namenode + "/user/$USERNAME/$testAppendInput/test3.file$date";
+    //String myInputPath = "$testAppendInput/test3.file$date";
     Path inFile = new Path(myInputPath);
     assertTrue("Input file not found", fs.exists(inFile));
     //VIPR-HDFS-566 BUG FIX
-    //String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/test4.file$date";
-    String myOutputPath = "$testAppendInput/test4.file$date";
+    String myOutputPath = namenode + "/user/$USERNAME/$testAppendInput/test4.file$date";
+    //String myOutputPath = "$testAppendInput/test4.file$date";
     Path outFile = new Path(myOutputPath);
     assertTrue("Output file not found", fs.exists(outFile));  
 
